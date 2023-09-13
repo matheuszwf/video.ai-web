@@ -6,7 +6,7 @@ export enum Theme {
 }
 
 type ThemeContextType = {
-  theme: Theme
+  theme: Theme | null
   toggleTheme(): void
 }
 
@@ -20,11 +20,11 @@ type ThemeProviderType = {
 }
 
 export const ThemeProvider = ({ children }: ThemeProviderType) => {
-  const [theme, setTheme] = useState<Theme>(Theme.light)
-  const storedTheme = localStorage.getItem('theme')
-
+  const [theme, setTheme] = useState<Theme | null>(null)
+  
   useEffect(() => {
-    if (storedTheme && storedTheme != Theme.light) {
+    const storedTheme = localStorage.getItem('theme')
+    if (storedTheme) {
       setTheme(storedTheme as Theme)
     } else {
       setTheme(Theme.light)
@@ -32,13 +32,15 @@ export const ThemeProvider = ({ children }: ThemeProviderType) => {
   }, [])
 
   useEffect(() => {
-    if (theme === Theme.light) {
-      document.documentElement.classList.remove(Theme.dark)
-    } else {
-      document.documentElement.classList.add(Theme.dark)
+    if (theme) {
+      localStorage.setItem('theme', theme)
     }
 
-    localStorage.setItem('theme', theme)
+    if (theme === Theme.light) {
+      document.body.classList.remove(Theme.dark)
+    } else {
+      document.body.classList.add(Theme.dark)
+    }
   }, [theme])
 
   const toggleTheme = () => {
@@ -47,7 +49,7 @@ export const ThemeProvider = ({ children }: ThemeProviderType) => {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
+      {theme && children}
     </ThemeContext.Provider>
   )
 }
