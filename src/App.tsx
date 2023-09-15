@@ -1,8 +1,8 @@
 import { Separator } from "./components/ui/separator";
 import { Header } from "./components/header";
 import { Prompt } from "./components/prompt";
-import { UploadForm } from "./components/uploadForm";
-import { ProcessForm } from "./components/ProcessForm";
+import { UploadForm } from "./components/upload-form";
+import { ProcessForm } from "./components/process-form";
 
 export function App() {
   return (

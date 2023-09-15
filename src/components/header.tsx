@@ -1,8 +1,8 @@
 import { FC, ReactElement } from "react";
 import { cn } from "@/lib/utils";
 import { Separator } from "./ui/separator";
-import { ThemeToggle } from "./themeToggle";
-import { LinkToGithub } from "./linkToGithub";
+import { LinkToGithub } from "./link-to-github";
+import { ThemeToggle } from "./theme-toggle";
 
 type HeaderProps = {
   className?: string
