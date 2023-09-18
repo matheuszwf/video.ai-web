@@ -52,8 +52,6 @@ export const ProcessForm: FC<ProcessFormProps> = ({ className }): ReactElement =
         </span>
       </div>
 
-
-
       <Button className="w-full">
         Process
         <Wand2 className="w-4 h-4 ml-2" />
